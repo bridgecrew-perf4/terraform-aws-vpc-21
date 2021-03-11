@@ -13,7 +13,7 @@ variable "vpc_name" {
 variable "environment" {
   description = "The defining environment of the Account: DEV, TST, STG, PRD, ROOT"
   type        = string
-  default     = null
+  default     = "dev"
 }
 
 variable "tags" {
@@ -23,6 +23,7 @@ variable "tags" {
 
 variable "subnet_cidrs" {
   type = map
+  description = "Desired CIDRs for public and private subnets"
   default = {
     "public_cidr_1"  = "10.0.1.0/27"
     "public_cidr_2"  = "10.0.3.0/27"

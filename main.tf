@@ -149,43 +149,6 @@ resource "aws_route_table_association" "public_subnet_3_association" {
   route_table_id = aws_route_table.public_route_table.id
 }
 
-resource "aws_security_group" "application_security_group" {
-  name        = "application-security-group"
-  description = "Application security group for private subnets"
-  vpc_id      = aws_vpc.standard_vpc.id
-
-}
-
-resource "aws_security_group_rule" "application_security_group_rule_self" {
-  type              = "ingress"
-  from_port         = 0
-  to_port           = 0
-  protocol          = "-1"
-  security_group_id = aws_security_group.application_security_group.id
-  self              = true
-  description       = "Allow all traffic within application security group"
-}
-
-resource "aws_security_group_rule" "application_security_group_rule_bastion" {
-  type                     = "ingress"
-  from_port                = 22
-  to_port                  = 22
-  protocol                 = "tcp"
-  security_group_id        = aws_security_group.application_security_group.id
-  source_security_group_id = aws_security_group.bastion_security_group.id
-  description              = "Allow ssh traffic to application security group"
-}
-
-resource "aws_security_group_rule" "application_security_group_rule_outbound" {
-  type                     = "egress"
-  from_port                = 0
-  to_port                  = 0
-  protocol                 = "-1"
-  security_group_id        = aws_security_group.application_security_group.id
-  source_security_group_id = aws_security_group.nat_security_group.id
-  description              = "Allow application security group all traffic out to nat"
-}
-
 resource "aws_instance" "nat_instance" {
   ami                         = data.aws_ami.amazon_2_ami.id
   instance_type               = "t3a.micro"
