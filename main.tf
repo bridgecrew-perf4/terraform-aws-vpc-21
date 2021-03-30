@@ -172,15 +172,6 @@ resource "aws_security_group" "nat_security_group" {
   tags = merge({ Name = "nat-security-group" }, local.tags)
 }
 
-resource "aws_security_group_rule" "nat_security_group_rule_app_inbound" {
-  type                     = "ingress"
-  from_port                = 0
-  to_port                  = 0
-  protocol                 = "-1"
-  security_group_id        = aws_security_group.nat_security_group.id
-  description              = "Allow all traffic from application security group for nat"
-}
-
 resource "aws_security_group_rule" "nat_security_group_rule_outbound" {
   type              = "egress"
   from_port         = 0
