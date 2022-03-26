@@ -27,12 +27,12 @@ Using a standard VPC configuration allows you to consistently create a secure an
 
 ## Technology
 
-- terraform >0.13
+- terraform >1.00
 - AWS
 
 ## Requirements
 
-- terraform >0.13
+- terraform >1.00
 - AWS credentials configured i.g. AWS IAM user credentials, Gitlab runner/Jenkins Build server with IAM role and appropraite permissions
 - 2 AWS Keypairs: Must be created prior to deployment
   - Bastion Key
@@ -79,15 +79,15 @@ bastion_instance_key = "bastion-key"
 
 ## Variables
 
-| Name                 | Description                                                       | Type          | Default                | Required |
-| -------------------- | ----------------------------------------------------------------- | ------------- | ---------------------- | -------- |
-| vpc_cidr_block       | CIDR Block for the VPC                                            | string        | 10.0.0.0/20            | yes      |
-| vpc_name             | The NAME of the VPC                                               | string        | devinitly-standard-vpc | yes      |
-| environment          | The defining environment of the Account: DEV, TST, STG, PRD, ROOT | string        | dev                    | yes      |
-| subnet_cidrs         | Desired CIDRs for public and private subnets                      | map           | See Variables File     | yes      |
-| nat_instance_key     | The desired key pair name for the nat instance                    | string        | null                   | yes      |
-| bastion_instance_key | The desired key pair name for the bastion instance                | string        | null                   | yes      |
-| tags                 | Additional tags for resources                                     | map (string ) | null                   | no       |
+| Name                 | Description                                                       | Type          | Default            | Required |
+| -------------------- | ----------------------------------------------------------------- | ------------- |--------------------| -------- |
+| vpc_cidr_block       | CIDR Block for the VPC                                            | string        | 10.0.0.0/20        | yes      |
+| vpc_name             | The NAME of the VPC                                               | string        | null               | yes      |
+| environment          | The defining environment of the Account: DEV, TST, STG, PRD, ROOT | string        | dev                | yes      |
+| subnet_cidrs         | Desired CIDRs for public and private subnets                      | map           | See Variables File | yes      |
+| nat_instance_key     | The desired key pair name for the nat instance                    | string        | null               | yes      |
+| bastion_instance_key | The desired key pair name for the bastion instance                | string        | null               | yes      |
+| tags                 | Additional tags for resources                                     | map (string ) | null               | no       |
 
 ## Outputs
 
